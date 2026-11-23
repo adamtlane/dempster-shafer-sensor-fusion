@@ -1,0 +1,5 @@
+comparison,better_mean,better_sd,better_min,better_max,worse_mean,worse_sd,worse_min,worse_max,ns_mean,cells_same_verdict_all_seeds,cells_sign_flip,median_between_seed_sd,max_between_seed_sd
+DS - Bayes,25.8,0.83666,25,27,6.0,0.707107,5,7,4.2,30,0,0.006551,0.013783
+DS - BayesDisc,15.6,1.516575,14,17,15.6,0.894427,15,17,4.8,26,0,0.001826,0.00526
+Yager - DS,8.4,1.341641,7,10,22.0,0.707107,21,23,5.6,30,0,0.001618,0.010451
+Yager - BayesDisc,11.0,0.707107,10,12,19.8,0.83666,19,21,5.2,29,0,0.003228,0.013263

@@ -1,0 +1,85 @@
+==========================================================================
+WORKED TRACE   alpha = 0.3, conflict c = 0.3, true class = T
+==========================================================================
+Radar    [honest    ] raw: m({T})=0.800, m(Theta)=0.200
+                      discounted: m({T})=0.560, m(Theta)=0.440
+Imaging  [honest    ] raw: m({T})=0.850, m(Theta)=0.150
+                      discounted: m({T})=0.595, m(Theta)=0.405
+ESM      [decoy     ] raw: m({U})=0.700, m(Theta)=0.300
+                      discounted: m({U})=0.490, m(Theta)=0.510
+
+Step conflicts K_i = [0.0, 0.4027], overall K = 0.4027
+Combined mass (Dempster's rule, normalised):
+   m({T}) = 0.7017
+   m(Theta) = 0.1522
+   m({U}) = 0.1462
+
+ class    Bel     Pl    BetP  Bayes  BayesDisc
+   F    0.0000 0.1522 0.0380 0.0024  0.0205
+   T    0.7017 0.8538 0.7397 0.9703  0.8596
+   H    0.0000 0.1522 0.0380 0.0024  0.0205
+   U    0.1462 0.2983 0.1842 0.0249  0.0994
+Ignorance kept on Theta: m(Theta) = 0.1522
+
+Running grid: 6 x 6 cells, 2000 trials each, seed 605745
+  alpha=0.00 done (0.5 s)
+  alpha=0.15 done (1.0 s)
+  alpha=0.30 done (1.5 s)
+  alpha=0.45 done (1.9 s)
+  alpha=0.60 done (2.4 s)
+  alpha=0.75 done (2.9 s)
+Grid finished in 2.9 s
+
+Headline results (mean over trials, 95% CI half width in parentheses)
+alpha    c |         acc DS      acc Bayes |       Brier DS    Brier Bayes    Brier BDisc | mean K
+ 0.00  0.0 | 1.000 (0.000) 1.000 (0.000) | 0.001 (0.000) 0.000 (0.000) 0.000 (0.000) | 0.000
+ 0.00  0.2 | 0.845 (0.016) 0.844 (0.016) | 0.211 (0.018) 0.208 (0.020) 0.208 (0.020) | 0.309
+ 0.00  0.4 | 0.645 (0.021) 0.652 (0.021) | 0.494 (0.026) 0.508 (0.029) 0.508 (0.029) | 0.493
+ 0.00  0.5 | 0.521 (0.022) 0.525 (0.022) | 0.680 (0.029) 0.713 (0.032) 0.713 (0.032) | 0.548
+ 0.30  0.0 | 0.824 (0.017) 0.825 (0.017) | 0.255 (0.015) 0.239 (0.021) 0.235 (0.017) | 0.185
+ 0.30  0.2 | 0.697 (0.020) 0.701 (0.020) | 0.413 (0.019) 0.434 (0.027) 0.406 (0.022) | 0.262
+ 0.30  0.4 | 0.550 (0.022) 0.553 (0.022) | 0.586 (0.021) 0.663 (0.031) 0.602 (0.025) | 0.307
+ 0.30  0.5 | 0.416 (0.022) 0.419 (0.022) | 0.730 (0.022) 0.870 (0.032) 0.769 (0.026) | 0.326
+ 0.60  0.0 | 0.590 (0.022) 0.590 (0.022) | 0.551 (0.014) 0.597 (0.030) 0.535 (0.017) | 0.110
+ 0.60  0.2 | 0.496 (0.022) 0.496 (0.022) | 0.624 (0.014) 0.736 (0.031) 0.622 (0.017) | 0.119
+ 0.60  0.4 | 0.431 (0.022) 0.428 (0.022) | 0.698 (0.015) 0.878 (0.033) 0.710 (0.018) | 0.122
+ 0.60  0.5 | 0.362 (0.021) 0.360 (0.021) | 0.736 (0.015) 0.968 (0.032) 0.758 (0.018) | 0.123
+
+Separation (paired 95% CI on Brier DS minus plain Bayes excludes zero, DS better):
+   alpha = 0.00: first separating conflict level = 0.4
+   alpha = 0.15: first separating conflict level = 0.3
+   alpha = 0.30: first separating conflict level = 0.2
+   alpha = 0.45: first separating conflict level = 0.2
+   alpha = 0.60: first separating conflict level = 0.0
+   alpha = 0.75: first separating conflict level = 0.0
+
+Counter-explanation check, DS versus naive Bayes with the SAME discounting:
+   DS significantly better Brier in 17 of 36 cells, significantly worse in 15, indistinguishable in 4.
+   Largest DS advantage: -0.039 (+/- 0.005) at alpha=0.30, c=0.5
+   Largest absolute accuracy gap DS vs plain Bayes over all cells: 0.012
+
+Running misspecified discount study: 4 true x 6 assumed x 3 conflict cells, 2000 trials each
+Misspecification study finished in 5.6 s
+
+Misspecified reliability (assumption 3). Brier at the assumed discount minus Brier when
+the discount is correct, averaged over true alpha in {0.15, 0.30, 0.45, 0.60} and all conflicts:
+   assumed - true = -0.30:  DS +0.028,  BayesDisc +0.049
+   assumed - true = -0.15:  DS +0.010,  BayesDisc +0.020
+   assumed - true = +0.15:  DS +0.005,  BayesDisc -0.007
+   assumed - true = +0.30:  DS +0.026,  BayesDisc +0.003
+   DS vs plain Bayes over all 72 misspecified and correct cells: better in 52, worse in 16, indistinguishable in 4
+   DS vs discounted Bayes over the same cells: better in 36, worse in 28, indistinguishable in 8
+   true alpha 0.15, c 0.0: DS Brier is lowest at assumed alpha 0.00
+   true alpha 0.15, c 0.3: DS Brier is lowest at assumed alpha 0.30
+   true alpha 0.15, c 0.5: DS Brier is lowest at assumed alpha 0.60
+   true alpha 0.30, c 0.0: DS Brier is lowest at assumed alpha 0.00
+   true alpha 0.30, c 0.3: DS Brier is lowest at assumed alpha 0.30
+   true alpha 0.30, c 0.5: DS Brier is lowest at assumed alpha 0.60
+   true alpha 0.45, c 0.0: DS Brier is lowest at assumed alpha 0.15
+   true alpha 0.45, c 0.3: DS Brier is lowest at assumed alpha 0.45
+   true alpha 0.45, c 0.5: DS Brier is lowest at assumed alpha 0.75
+   true alpha 0.60, c 0.0: DS Brier is lowest at assumed alpha 0.30
+   true alpha 0.60, c 0.3: DS Brier is lowest at assumed alpha 0.60
+   true alpha 0.60, c 0.5: DS Brier is lowest at assumed alpha 0.75
+
+Wrote grid_summary.csv, misspec_summary.csv and four figures to /home/claude/Code/results

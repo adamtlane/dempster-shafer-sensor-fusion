@@ -1,0 +1,16 @@
+  n  subsets |   DS dense (s)  DS sensor (s)    Bayes (s)
+  2        3 |      5.976e-06      9.503e-06    6.877e-06
+  3        7 |      1.783e-05      1.125e-05    8.007e-06
+  4       15 |      6.832e-05      1.041e-05    8.488e-06
+  5       31 |      2.500e-04      1.389e-05    9.976e-06
+  6       63 |      1.008e-03      1.093e-05    1.113e-05
+  7      127 |      4.077e-03      1.407e-05    1.234e-05
+  8      255 |      1.779e-02      1.367e-05    1.436e-05
+  9      511 |      7.093e-02      1.265e-05    1.536e-05
+ 10     1023 |      3.272e-01      1.518e-05    1.648e-05
+
+DS dense: log-log slope of time against number of subsets (n >= 6) = 2.07 (2.0 expected for a cost of (2^n - 1)^2)
+DS dense: mean time ratio per added class (n >= 6) = 4.25 (4.0 expected)
+At n = 10: DS dense / Bayes = 19848x, DS sensor / Bayes = 0.9x
+At n = 4 (the experiment): DS sensor 10.4 us, Bayes 8.5 us, DS dense 68.3 us
+Wrote results/timing_summary.csv and results/fig_runtime_vs_frame.png
